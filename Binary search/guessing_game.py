@@ -11,6 +11,7 @@ badCase = []
 goodCase = []
 
 for i in range(input):
+    print(i)
     _min = min
     _max = max
     number = Random().randint(min, max)
@@ -25,10 +26,15 @@ for i in range(input):
             n = number
             badCase.append(guessedTime)
             isRunning = False
+        
+        if (_max+_min)/2 == 1.5 and number == 1:
+            isRunning = False
+            goodCase.append(guessedTime)
+
         if n > number:
-            _max = n
+            _max = int(n)
         elif n < number:
-            _min = n
+            _min = int(n)
         elif n == number:
             isRunning = False
             goodCase.append(guessedTime)
