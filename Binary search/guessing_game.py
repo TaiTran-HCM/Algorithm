@@ -16,21 +16,14 @@ for i in range(input):
     _max = max
     number = Random().randint(min, max)
     while(isRunning):
-        n = int((_max+_min)/2)
-        m = (_max+_min)%2
-        if m != 0:
-            n += 1
+        n = int((_max+_min)//2)
         guessedTime += 1
         if guessedTime >= max:
-            print(f"Min: {_min}, Max: {_max}, N: {n, (_max+_min)/2, int((_max+_min)/2)}, Number: {number}")
+            print(f"Min: {_min}, Max: {_max}, N: {n, (_max+_min)//2, int((_max+_min)/2)}, Number: {number}")
             n = number
             badCase.append(guessedTime)
             isRunning = False
-        
-        if (_max+_min)/2 == 1.5 and number == 1:
-            isRunning = False
-            goodCase.append(guessedTime)
-
+            break
         if n > number:
             _max = int(n)
         elif n < number:
@@ -53,3 +46,10 @@ for i in indexGoodCase:
     case = goodCase.count(i)
     percent = (case/len(goodCase))*100
     print(f"Case: {i} - {percent}%")
+
+#* Pseudocode Binary Search
+# Step 1: Min = 0, Max = 100
+# Step 2: If guessed = (0+100)//2 integer
+# Step 3: If n < guessed -> Max = guessed -> go back step 2
+# Step 3a: If n > guessed -> Min = guessed -> go back step 2
+# Step 3b: If n == guessed -> n have found -> Finish
